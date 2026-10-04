@@ -1,0 +1,18 @@
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Variables de entorno globales
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Archivos temporales
+*.tmp
+*.temp
