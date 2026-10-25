@@ -5,9 +5,9 @@ const pool = require("../db");
 
 const login = async (req, res) => {
     try {
-        const { correo, password } = req.body;
+        const { correo, password } = req.body || {};
 
-        if (!correo?.trim() || !password) {
+        if (typeof correo !== "string" || !correo.trim() || typeof password !== "string" || !password || correo.length > 150 || Buffer.byteLength(password, "utf8") > 72) {
             return res.status(400).json({
                 ok: false,
                 mensaje: "Correo y contraseña son obligatorios",
@@ -39,13 +39,6 @@ const login = async (req, res) => {
 
         const usuario = resultado.rows[0];
 
-        if (!usuario.activo) {
-            return res.status(403).json({
-                ok: false,
-                mensaje: "Usuario inactivo",
-            });
-        }
-
         const passwordCorrecto = await bcrypt.compare(
             password,
             usuario.password_hash
@@ -56,6 +49,10 @@ const login = async (req, res) => {
                 ok: false,
                 mensaje: "Credenciales incorrectas",
             });
+        }
+
+        if (!usuario.activo) {
+            return res.status(403).json({ ok: false, mensaje: "Usuario inactivo" });
         }
 
         const token = jwt.sign(
@@ -93,4 +90,5 @@ const login = async (req, res) => {
 
 module.exports = {
     login,
+    obtenerSesion: (req, res) => res.json({ ok: true, usuario: req.usuario }),
 };

@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const pool = require("../db");
+const { esIdValido, validarUsuario } = require("./validacionUsuarios");
 
 const listarUsuarios = async (req, res) => {
   try {
@@ -35,21 +36,9 @@ const listarUsuarios = async (req, res) => {
 
 const crearUsuario = async (req, res) => {
   try {
-    const { nombre, apellido, correo, password, rolId } = req.body;
-
-    if (!nombre?.trim() || !apellido?.trim() || !correo?.trim() || !password || !rolId) {
-      return res.status(400).json({
-        ok: false,
-        mensaje: "Completa todos los campos obligatorios",
-      });
-    }
-
-    if (password.length < 8) {
-      return res.status(400).json({
-        ok: false,
-        mensaje: "La contraseña debe tener al menos 8 caracteres",
-      });
-    }
+    const { nombre, apellido, correo, password, rolId } = req.body || {};
+    const mensaje = validarUsuario(req.body || {}, true);
+    if (mensaje) return res.status(400).json({ ok: false, mensaje });
 
     const rol = await pool.query(
       "SELECT id FROM roles WHERE id = $1",
@@ -99,6 +88,7 @@ const crearUsuario = async (req, res) => {
       usuario: resultado.rows[0],
     });
   } catch (error) {
+    if (error.code === "23505") return res.status(409).json({ ok: false, mensaje: "Ya existe un usuario con ese correo" });
     console.error("Error al crear usuario:", error.message);
 
     res.status(500).json({
@@ -111,7 +101,12 @@ const crearUsuario = async (req, res) => {
 const actualizarUsuario = async (req, res) => {
   try {
     const { id } = req.params;
-    const { nombre, apellido, correo, rolId, password } = req.body;
+    const { nombre, apellido, correo, rolId, password } = req.body || {};
+    if (!esIdValido(id)) return res.status(400).json({ ok: false, mensaje: "Identificador inválido" });
+    const mensaje = validarUsuario(req.body || {}, false);
+    if (mensaje) return res.status(400).json({ ok: false, mensaje });
+    const rol = await pool.query("SELECT id FROM roles WHERE id = $1", [rolId]);
+    if (!rol.rows.length) return res.status(400).json({ ok: false, mensaje: "El rol seleccionado no existe" });
 
     const usuario = await pool.query(
       "SELECT id FROM usuarios WHERE id = $1",
@@ -122,13 +117,6 @@ const actualizarUsuario = async (req, res) => {
       return res.status(404).json({
         ok: false,
         mensaje: "Usuario no encontrado",
-      });
-    }
-
-    if (!nombre?.trim() || !apellido?.trim() || !correo?.trim() || !rolId) {
-      return res.status(400).json({
-        ok: false,
-        mensaje: "Completa todos los campos obligatorios",
       });
     }
 
@@ -150,13 +138,6 @@ const actualizarUsuario = async (req, res) => {
     }
 
     if (password) {
-      if (password.length < 8) {
-        return res.status(400).json({
-          ok: false,
-          mensaje: "La contraseña debe tener al menos 8 caracteres",
-        });
-      }
-
       const passwordHash = await bcrypt.hash(password, 10);
 
       await pool.query(
@@ -199,6 +180,7 @@ const actualizarUsuario = async (req, res) => {
       mensaje: "Usuario actualizado correctamente",
     });
   } catch (error) {
+    if (error.code === "23505") return res.status(409).json({ ok: false, mensaje: "Ya existe otro usuario con ese correo" });
     console.error("Error al actualizar usuario:", error.message);
 
     res.status(500).json({
@@ -211,7 +193,8 @@ const actualizarUsuario = async (req, res) => {
 const cambiarEstadoUsuario = async (req, res) => {
   try {
     const { id } = req.params;
-    const { activo } = req.body;
+    const { activo } = req.body || {};
+    if (!esIdValido(id)) return res.status(400).json({ ok: false, mensaje: "Identificador inválido" });
 
     if (typeof activo !== "boolean") {
       return res.status(400).json({
