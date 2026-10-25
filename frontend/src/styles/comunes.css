@@ -1,0 +1,279 @@
+.crm-layout,
+.crm-login,
+.crm-espera {
+  font-family: Arial, sans-serif;
+  color: #14213d;
+}
+
+.crm-layout *,
+.crm-login *,
+.crm-espera {
+  box-sizing: border-box;
+}
+
+.crm-layout button,
+.crm-login button,
+.crm-espera button {
+  cursor: pointer;
+}
+
+.crm-layout button:disabled,
+.crm-login button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.crm-layout :focus-visible,
+.crm-login :focus-visible {
+  outline: 3px solid #80aaff;
+  outline-offset: 3px;
+}
+
+.crm-marca {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: inherit;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.crm-marca b {
+  color: #537ee3;
+}
+
+.crm-marca small {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 1.8px;
+  margin-top: 4px;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.crm-logo {
+  display: grid;
+  place-items: center;
+  background: #082b7a;
+  color: white;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   PÁGINAS
+   ========================================================= */
+
+.crm-pagina {
+  padding: 34px 32px;
+  max-width: 1600px;
+  margin: auto;
+}
+
+.crm-pagina-encabezado {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.crm-pagina h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.7px;
+  margin: 8px 0;
+}
+
+.crm-pagina h2 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.crm-pagina-encabezado p,
+.crm-modal-encabezado p {
+  color: #64748b;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.crm-eyebrow {
+  color: #6f7f99;
+  font-size: 10px;
+  letter-spacing: 1.6px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
+.crm-boton,
+.crm-boton-secundario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 12px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.crm-boton {
+  background: #082b7a;
+  color: white;
+}
+
+.crm-boton:hover {
+  background: #173d8e;
+}
+
+.crm-boton-secundario {
+  border-color: #dbe1eb;
+  background: white;
+  color: #334155;
+}
+
+.crm-boton-secundario:hover {
+  background: #f4f6fb;
+}
+
+/* =========================================================
+   TARJETAS
+   ========================================================= */
+
+.crm-tarjeta {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.crm-filtros input,
+.crm-filtros select,
+.crm-form input,
+.crm-form select {
+  width: 100%;
+  padding: 12px 13px;
+  border: 1px solid #d7deea;
+  border-radius: 7px;
+  background: white;
+  color: #14213d;
+  font-size: 14px;
+  min-height: 44px;
+}
+
+/* =========================================================
+   MENSAJES
+   ========================================================= */
+
+.crm-error,
+.crm-exito,
+.crm-aviso {
+  border: 1px solid #f4c8cc;
+  border-radius: 8px;
+  background: #fff1f2;
+  color: #a32938;
+  padding: 13px 16px;
+  font-size: 13px;
+  margin: 0 0 20px;
+  line-height: 1.6;
+}
+
+.crm-error button {
+  text-decoration: underline;
+  margin-left: 8px;
+}
+
+.crm-exito {
+  color: #18764d;
+  background: #eefaf3;
+  border-color: #c4ead5;
+}
+
+.crm-form {
+  display: grid;
+  gap: 22px;
+}
+
+.crm-form label {
+  display: grid;
+  gap: 9px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.crm-form small {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #64748b;
+}
+
+/* =========================================================
+   ESTADO DE ESPERA
+   ========================================================= */
+
+.crm-espera {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px;
+  background: #f7f8fc;
+}
+
+.crm-espera h1 {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   ACCESIBILIDAD
+   ========================================================= */
+
+.crm-solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =========================================================
+   RESPONSIVE - TABLET
+   ========================================================= */
+
+/* =========================================================
+   RESPONSIVE - MÓVIL
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+  .crm-pagina {
+    padding: 26px 20px;
+  }
+
+  .crm-pagina h1 {
+    font-size: 25px;
+  }
+
+  .crm-pagina-encabezado {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,207 @@
+/* =========================================================
+   FILTROS
+   ========================================================= */
+
+.crm-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 18px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  margin-bottom: 22px;
+}
+
+.crm-busqueda {
+  flex: 1;
+  min-width: 210px;
+}
+
+.crm-filtros select {
+  min-width: 160px;
+}
+
+/* =========================================================
+   TABLAS
+   ========================================================= */
+
+.crm-tabla-scroll {
+  overflow-x: auto;
+}
+
+.crm-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+
+.crm-tabla th {
+  background: #fafbfe;
+  color: #68758c;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  padding: 18px 22px;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.crm-tabla td {
+  padding: 20px 22px;
+  border-bottom: 1px solid #eef1f6;
+}
+
+.crm-tabla td strong {
+  font-weight: 600;
+}
+
+.crm-tabla tr:hover td {
+  background: #fcfdff;
+}
+
+.crm-tu {
+  display: block;
+  color: #64748b;
+  font-size: 10px;
+  margin-top: 4px;
+}
+
+.crm-etiqueta {
+  padding: 5px 8px;
+  border-radius: 5px;
+  background: #edf2ff;
+  color: #25488f;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.crm-estado {
+  background: #f1f3f6;
+  color: #64748b;
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.crm-estado-activo {
+  background: #e9f7f0;
+  color: #18764d;
+}
+
+.crm-tabla-acciones {
+  display: flex;
+  gap: 15px;
+}
+
+.crm-enlace {
+  background: none;
+  color: #25488f;
+  font-size: 12px;
+  border: 0;
+  padding: 5px 0;
+}
+
+.crm-enlace:hover {
+  text-decoration: underline;
+}
+
+.crm-tabla-pie {
+  padding: 17px 22px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.crm-tabla .crm-vacio {
+  padding: 50px 20px;
+  text-align: center;
+  color: #64748b;
+}
+
+/* =========================================================
+   MODALES Y FORMULARIOS
+   ========================================================= */
+
+.crm-modal {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  padding: 28px;
+  border: 0;
+  border-radius: 14px;
+  width: min(560px, calc(100% - 32px));
+  max-height: calc(100dvh - 40px);
+  overflow-y: auto;
+  color: #14213d;
+  box-shadow: 0 24px 80px #0b1c3040;
+}
+
+.crm-modal::backdrop {
+  background: #0b1c3077;
+}
+
+.crm-modal-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25px;
+  gap: 15px;
+}
+
+.crm-modal h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.crm-icono-boton {
+  background: none;
+  border: 0;
+  font-size: 26px;
+  color: #64748b;
+  line-height: 1;
+}
+
+.crm-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.crm-campo-completo {
+  grid-column: 1 / -1;
+}
+
+.crm-form-acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 22px;
+}
+
+@media (max-width: 760px) {
+
+  .crm-filtros>label {
+    flex: 1;
+  }
+
+  .crm-tabla th,
+  .crm-tabla td {
+    padding: 16px;
+  }
+
+  .crm-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .crm-modal {
+    padding: 22px;
+  }
+}
