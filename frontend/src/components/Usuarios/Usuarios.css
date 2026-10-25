@@ -8,7 +8,7 @@
   gap: 14px;
   padding: 18px;
   background: white;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border);
   border-radius: 12px;
   margin-bottom: 22px;
 }
@@ -44,7 +44,7 @@
   font-weight: 600;
   letter-spacing: 0.4px;
   padding: 18px 22px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--border);
   white-space: nowrap;
 }
 
@@ -63,7 +63,7 @@
 
 .crm-tu {
   display: block;
-  color: #64748b;
+  color: var(--text-secondary);
   font-size: 10px;
   margin-top: 4px;
 }
@@ -79,7 +79,7 @@
 
 .crm-estado {
   background: #f1f3f6;
-  color: #64748b;
+  color: var(--text-secondary);
   border-radius: 20px;
   padding: 5px 10px;
   font-size: 11px;
@@ -111,13 +111,13 @@
 .crm-tabla-pie {
   padding: 17px 22px;
   font-size: 12px;
-  color: #64748b;
+  color: var(--text-secondary);
 }
 
 .crm-tabla .crm-vacio {
   padding: 50px 20px;
   text-align: center;
-  color: #64748b;
+  color: var(--text-secondary);
 }
 
 /* =========================================================
@@ -134,12 +134,12 @@
   width: min(560px, calc(100% - 32px));
   max-height: calc(100dvh - 40px);
   overflow-y: auto;
-  color: #14213d;
-  box-shadow: 0 24px 80px #0b1c3040;
+  color: var(--text-primary);
+  box-shadow: 0 24px 80px var(--text-primary)40;
 }
 
 .crm-modal::backdrop {
-  background: #0b1c3077;
+  background: var(--text-primary)77;
 }
 
 .crm-modal-encabezado {
@@ -160,7 +160,7 @@
   background: none;
   border: 0;
   font-size: 26px;
-  color: #64748b;
+  color: var(--text-secondary);
   line-height: 1;
 }
 
@@ -182,7 +182,7 @@
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border);
   padding-top: 22px;
 }
 
@@ -204,4 +204,27 @@
   .crm-modal {
     padding: 22px;
   }
+}
+
+.crm-resumen-usuarios { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; margin-bottom: 26px; }
+.crm-resumen-usuario { padding: 24px; min-width: 0; }
+.crm-resumen-usuario p { color: var(--text-secondary); font-size: 12px; font-weight: 600; text-transform: uppercase; margin: 0 0 20px; }
+.crm-resumen-usuario strong { font-size: 32px; line-height: 1.2; overflow-wrap: anywhere; }
+.crm-resumen-usuario small { display: block; color: var(--text-secondary); font-size: 12px; margin-top: 10px; }
+.crm-etiqueta { display: inline-block; border: 1px solid #c9d7f6; border-radius: 20px; padding: 5px 10px; font-size: 11px; white-space: nowrap; }
+.crm-rol-administrador { color: white; background: var(--primary); border-color: var(--primary); }
+.crm-rol-gerente { color: #6d28d9; background: #f3eaff; border-color: #dcc4ff; }
+.crm-rol-vendedor { color: #075985; background: #e9f6ff; border-color: #b8e0fa; }
+.crm-estado { display: inline-block; border: 1px solid #d5deea; }
+.crm-estado-activo { border-color: #b1e5d0; }
+.crm-tabla th { background: #f5f7fc; text-transform: uppercase; }
+.crm-tabla-pie { background: #fafbfe; }
+.crm-filtros { box-shadow: var(--shadow-card); }
+@media (max-width: 1100px) { .crm-resumen-usuarios { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) {
+ .crm-resumen-usuarios { gap: 12px; }
+ .crm-resumen-usuario { padding: 18px; }
+ .crm-resumen-usuario strong { font-size: 26px; }
+ .crm-filtros > label, .crm-busqueda { min-width: 0; width: 100%; flex-basis: 100%; }
+ .crm-form-acciones { flex-wrap: wrap; }
 }

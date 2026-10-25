@@ -1,8 +1,27 @@
+:root {
+  --sidebar: #111b30;
+  --sidebar-secondary: #18243b;
+  --primary: #173a8f;
+  --primary-hover: #123278;
+  --background: #f6f7fb;
+  --surface: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #667085;
+  --border: #e2e6ef;
+  --success: #0f9f6e;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --font-ui: "Segoe UI", Arial, sans-serif;
+  --shadow-card: 0 1px 3px #111b3009;
+}
+body { margin: 0; background: var(--background); }
+button, input, select, textarea { font: inherit; }
+
 .crm-layout,
 .crm-login,
 .crm-espera {
-  font-family: Arial, sans-serif;
-  color: #14213d;
+  font-family: var(--font-ui);
+  color: var(--text-primary);
 }
 
 .crm-layout *,
@@ -41,22 +60,22 @@
 }
 
 .crm-marca b {
-  color: #537ee3;
+  color: inherit;
 }
 
 .crm-marca small {
   display: block;
-  font-size: 9px;
-  letter-spacing: 1.8px;
+  font-size: 11px;
+  letter-spacing: 0.2px;
   margin-top: 4px;
   font-weight: 500;
-  color: #64748b;
+  color: var(--text-secondary);
 }
 
 .crm-logo {
   display: grid;
   place-items: center;
-  background: #082b7a;
+  background: var(--primary);
   color: white;
   width: 42px;
   height: 42px;
@@ -96,7 +115,7 @@
 
 .crm-pagina-encabezado p,
 .crm-modal-encabezado p {
-  color: #64748b;
+  color: var(--text-secondary);
   font-size: 14px;
   margin: 0;
   line-height: 1.6;
@@ -128,12 +147,12 @@
 }
 
 .crm-boton {
-  background: #082b7a;
+  background: var(--primary);
   color: white;
 }
 
 .crm-boton:hover {
-  background: #173d8e;
+  background: var(--primary-hover);
 }
 
 .crm-boton-secundario {
@@ -151,8 +170,9 @@
    ========================================================= */
 
 .crm-tarjeta {
-  background: white;
-  border: 1px solid #e2e8f0;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
 }
@@ -166,7 +186,7 @@
   border: 1px solid #d7deea;
   border-radius: 7px;
   background: white;
-  color: #14213d;
+  color: var(--text-primary);
   font-size: 14px;
   min-height: 44px;
 }
@@ -215,7 +235,7 @@
   font-size: 11px;
   font-weight: 400;
   line-height: 1.6;
-  color: #64748b;
+  color: var(--text-secondary);
 }
 
 /* =========================================================
@@ -230,7 +250,7 @@
   justify-content: center;
   gap: 20px;
   padding: 30px;
-  background: #f7f8fc;
+  background: var(--background);
 }
 
 .crm-espera h1 {

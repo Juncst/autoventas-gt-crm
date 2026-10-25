@@ -3,10 +3,10 @@
 
 .prospectos-contenedor {
   padding: 32px;
-  background-color: #f8f9ff;
+  background-color: var(--background);
   min-height: 100vh;
-  font-family: Arial, sans-serif;
-  color: #0b1c30;
+  font-family: var(--font-ui);
+  color: var(--text-primary);
   box-sizing: border-box;
 }
 
@@ -25,12 +25,12 @@
 
 .prospectos-encabezado p {
   margin: 0;
-  color: #64748b;
+  color: var(--text-secondary);
   font-size: 14px;
 }
 
 .prospectos-boton {
-  background: #002b80;
+  background: var(--primary);
   color: white;
   border: none;
   padding: 12px 18px;
@@ -41,7 +41,7 @@
 }
 
 .prospectos-boton:hover {
-  background: #001e5c;
+  background: var(--primary-hover);
 }
 
 /* Indicadores */
@@ -55,14 +55,14 @@
 
 .prospectos-indicador {
   background: white;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border);
   border-radius: 14px;
   padding: 24px;
 }
 
 .prospectos-indicador > span {
   display: block;
-  color: #64748b;
+  color: var(--text-secondary);
   font-size: 13px;
   margin-bottom: 14px;
 }
@@ -112,7 +112,7 @@
   gap: 16px;
   background: white;
   padding: 28px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border);
   border-radius: 14px;
   margin-bottom: 38px;
 }
@@ -149,7 +149,7 @@
 
 .prospectos-tabla-contenedor {
   background: white;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border);
   border-radius: 14px;
   overflow-x: auto;
 }
@@ -162,7 +162,7 @@
 
 .prospectos-tabla th {
   background: #eef2ff;
-  color: #64748b;
+  color: var(--text-secondary);
   font-size: 12px;
   text-transform: uppercase;
   padding: 24px 20px;
@@ -171,7 +171,7 @@
 
 .prospectos-tabla td {
   padding: 28px 20px;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--border);
   font-size: 14px;
   vertical-align: middle;
 }
@@ -182,7 +182,7 @@
 
 .prospectos-tabla small {
   display: block;
-  color: #64748b;
+  color: var(--text-secondary);
   margin-top: 8px;
   font-size: 12px;
 }
@@ -210,7 +210,7 @@
 .prospectos-nombre,
 .prospectos-vehiculo {
   font-weight: 600;
-  color: #0b1c30;
+  color: var(--text-primary);
 }
 
 .prospectos-estado {
@@ -280,14 +280,14 @@
 .prospectos-sin-resultados {
   text-align: center;
   padding: 24px;
-  color: #64748b;
+  color: var(--text-secondary);
   font-size: 13px;
 }
 
 .prospectos-tabla-pie {
   padding: 20px;
-  border-top: 1px solid #e2e8f0;
-  color: #64748b;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
   font-size: 14px;
 }
 
@@ -332,7 +332,7 @@
 
 .prospectos-modal-encabezado p {
   font-size: 13px;
-  color: #64748b;
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -340,7 +340,7 @@
   background: transparent;
   border: none;
   font-size: 28px;
-  color: #64748b;
+  color: var(--text-secondary);
   cursor: pointer;
 }
 
@@ -375,7 +375,7 @@
   font-size: 14px;
   font-family: inherit;
   background: white;
-  color: #0b1c30;
+  color: var(--text-primary);
 }
 
 .prospectos-formulario input:focus,
@@ -391,7 +391,7 @@
   justify-content: flex-end;
   gap: 12px;
   padding-top: 18px;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border);
 }
 
 .prospectos-cancelar {
@@ -411,7 +411,7 @@
 
 .prospectos-ficha {
   background: white;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border);
   border-radius: 14px;
   margin-top: 28px;
   padding: 26px;
@@ -424,7 +424,7 @@
   align-items: flex-start;
   gap: 20px;
   padding-bottom: 22px;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border);
   margin-bottom: 24px;
 }
 
@@ -438,7 +438,7 @@
 .prospectos-ficha-persona h2 {
   font-size: 19px;
   margin: 0 0 12px;
-  color: #0b1c30;
+  color: var(--text-primary);
 }
 
 .prospectos-ficha-meta {
@@ -446,7 +446,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 8px 14px;
-  color: #64748b;
+  color: var(--text-secondary);
   font-size: 12px;
 }
 
@@ -500,14 +500,14 @@
   margin: 0 0 14px;
   font-size: 12px;
   font-weight: 700;
-  color: #64748b;
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.3px;
 }
 
 .prospectos-ficha-tarjeta {
   background: #f8faff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border);
   border-radius: 11px;
   padding: 16px;
   margin-bottom: 20px;
@@ -522,12 +522,12 @@
 .prospectos-ficha-tarjeta h4 {
   margin: 12px 0 7px;
   font-size: 15px;
-  color: #0b1c30;
+  color: var(--text-primary);
 }
 
 .prospectos-ficha-tarjeta p {
   margin: 8px 0;
-  color: #64748b;
+  color: var(--text-secondary);
   font-size: 12px;
   line-height: 1.6;
 }
@@ -535,7 +535,7 @@
 .prospectos-vehiculo-imagen {
   min-height: 150px;
   border-radius: 9px;
-  background: linear-gradient(135deg, #dbeafe, #e2e8f0);
+  background: linear-gradient(135deg, #dbeafe, var(--border));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -608,7 +608,7 @@
   flex: 1;
   min-width: 0;
   background: #f8faff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 14px;
 }
@@ -621,7 +621,7 @@
 
 .prospectos-actividad-cabecera strong {
   font-size: 12px;
-  color: #0b1c30;
+  color: var(--text-primary);
 }
 
 .prospectos-actividad-cabecera small {
@@ -632,7 +632,7 @@
 
 .prospectos-actividad-contenido p {
   font-size: 12px;
-  color: #64748b;
+  color: var(--text-secondary);
   line-height: 1.5;
   margin: 9px 0;
 }
@@ -653,7 +653,7 @@
   resize: vertical;
   font-family: inherit;
   font-size: 12px;
-  color: #0b1c30;
+  color: var(--text-primary);
   background: white;
 }
 
@@ -671,7 +671,7 @@
 
 .prospectos-nota {
   background: white;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 12px;
 }
@@ -748,3 +748,30 @@
     padding: 18px;
   }
 }
+
+/* Ajustes de presentación compartidos con las referencias de Stitch. */
+.prospectos-contenedor { max-width: 1600px; margin: auto; min-height: calc(100dvh - 72px); color: var(--text-primary); }
+.prospectos-encabezado h1 { font-weight: 700; letter-spacing: -0.7px; }
+.prospectos-filtros, .prospectos-tabla-contenedor { box-shadow: var(--shadow-card); border-color: var(--border); }
+.prospectos-filtros input, .prospectos-filtros select { min-height: 44px; border-color: var(--border); background: #fafbfe; }
+.prospectos-tabla th { background: #f1f4fc; font-weight: 600; letter-spacing: 0.35px; padding: 18px 20px; }
+.prospectos-tabla td { padding: 22px 20px; }
+.prospectos-tabla-pie { background: #fafbfe; font-size: 12px; }
+.prospectos-boton { min-height: 44px; }
+@media (max-width: 760px) {
+ .prospectos-contenedor { padding: 26px 20px; }
+ .prospectos-filtros { padding: 16px; gap: 12px; flex-wrap: wrap; }
+ .prospectos-filtros input, .prospectos-filtros select { flex-basis: 100%; width: 100%; min-width: 0; }
+ .prospectos-encabezado { flex-wrap: wrap; }
+ .prospectos-formulario-acciones { flex-wrap: wrap; }
+}
+
+.prospectos-indicadores { gap: 20px; margin-bottom: 26px; }
+.prospectos-indicador { box-shadow: var(--shadow-card); padding: 20px; }
+.prospectos-indicador > span { text-transform: uppercase; font-size: 11px; letter-spacing: 0.4px; }
+.prospectos-indicador-datos { flex-wrap: wrap; }
+.prospectos-indicador-datos strong { font-size: 28px; }
+.prospectos-indicador-datos small { font-size: 11px; padding: 5px 9px; }
+.prospectos-filtros { padding: 20px; margin-bottom: 26px; }
+.prospectos-estado { padding: 5px 10px; border: 1px solid currentColor; font-size: 11px; }
+.prospectos-ficha-meta { overflow-wrap: anywhere; }

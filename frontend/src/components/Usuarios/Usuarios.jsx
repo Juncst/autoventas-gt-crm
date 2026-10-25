@@ -58,7 +58,7 @@ export default function Usuarios() {
       (!estado || String(usuario.activo) === estado);
   });
   return (
-    <section className="crm-pagina">
+    <section className="crm-pagina" aria-label="Gestión de Usuarios y Roles">
       <div className="crm-pagina-encabezado">
         <div>
           <span className="crm-eyebrow">ADMINISTRACIÓN</span>
@@ -73,6 +73,16 @@ export default function Usuarios() {
       </div>
       {error && <div className="crm-error" role="alert">{error} <button type="button" onClick={() => cargar()}>Reintentar</button></div>}
       {mensaje && <p className="crm-exito" role="status">{mensaje}</p>}
+      <div className="crm-resumen-usuarios" aria-label="Resumen de usuarios">
+        {[{ titulo: 'Total usuarios', cantidad: usuarios.length, detalle: 'Personal registrado' },
+          ...['ADMINISTRADOR', 'GERENTE', 'VENDEDOR'].map((nombre, indice) => ({
+            titulo: ['Administradores', 'Gerentes', 'Vendedores'][indice],
+            cantidad: usuarios.filter(usuario => usuario.rol === nombre).length,
+            detalle: ['Administración del sistema', 'Gestión comercial', 'Equipo de ventas'][indice],
+          }))].map(resumen => <article className="crm-tarjeta crm-resumen-usuario" key={resumen.titulo}>
+            <p>{resumen.titulo}</p><strong>{cargando ? '…' : error ? 'No disponible' : resumen.cantidad}</strong><small>{resumen.detalle}</small>
+          </article>)}
+      </div>
       <div className="crm-filtros">
         <label className="crm-busqueda">
           <span className="crm-solo-lectores">Buscar usuarios</span>
@@ -109,7 +119,7 @@ export default function Usuarios() {
                     {usuario.id === usuarioActual.id && <small className="crm-tu">Tu cuenta</small>}
                   </td>
                   <td>{usuario.correo}</td>
-                  <td><span className="crm-etiqueta">{usuario.rol}</span></td>
+                  <td><span className={`crm-etiqueta crm-rol-${usuario.rol.toLowerCase()}`}>{usuario.rol}</span></td>
                   <td><span className={`crm-estado ${usuario.activo ? 'crm-estado-activo' : ''}`}>{usuario.activo ? 'Activo' : 'Inactivo'}</span></td>
                   <td>
                     <div className="crm-tabla-acciones">

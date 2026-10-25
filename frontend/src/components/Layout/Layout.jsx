@@ -43,10 +43,13 @@ export default function Layout({ pantalla, children }) {
         <header className="crm-header">
           <button className="crm-menu" aria-expanded={menuAbierto} aria-label="Abrir o cerrar menú" onClick={() => setMenuAbierto(!menuAbierto)}>☰</button>
           <span>
-            Espacio de trabajo <span className="crm-header-separador">/</span>
+            <span className="crm-header-concepto">Espacio de trabajo</span> <span className="crm-header-separador">/</span>
             <strong>{modulos.find(modulo => modulo.id === pantalla)?.nombre || 'Acceso restringido'}</strong>
           </span>
-          <span className="crm-header-pais">Guatemala</span>
+          <div className="crm-header-usuario">
+            <span className="crm-avatar" aria-hidden="true">{usuario.nombre.slice(0, 1)}{usuario.apellido.slice(0, 1)}</span>
+            <div><strong>{usuario.nombre} {usuario.apellido}</strong><small>{usuario.rol}</small></div>
+          </div>
         </header>
         {errorSesion && <p className="crm-aviso" role="status">No se pudo actualizar la sesión: {errorSesion}</p>}
         <main id="contenido-principal">{children}</main>

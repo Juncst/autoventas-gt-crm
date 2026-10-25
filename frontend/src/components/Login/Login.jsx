@@ -23,15 +23,10 @@ export default function Login() {
 
   return (
     <div className="crm-login">
-      <section className="crm-login-presentacion">
-        <div className="crm-marca"><span className="crm-logo"><Icono nombre="auto" /></span><span>AutoVentas <b>GT</b><small>GESTIÓN COMERCIAL</small></span></div>
-        <div><span className="crm-eyebrow">TU EQUIPO. TUS OPORTUNIDADES.</span><h1>Todo tu proceso comercial,<br />en un solo lugar.</h1><p>Conecta con tus clientes, da seguimiento a cada oportunidad y organiza el trabajo de tu equipo.</p><div className="crm-login-modulos"><span>Clientes</span><span>Prospectos</span><span>Equipo</span></div></div>
-        <small>AutoVentas GT · Guatemala</small>
-      </section>
       <section className="crm-login-formulario">
         <form className="crm-form crm-login-tarjeta" onSubmit={enviar}>
           <span className="crm-login-icono"><Icono nombre="auto" width="32" height="32" /></span>
-          <h2>Bienvenido de nuevo</h2><p>Ingresa tus credenciales para acceder al CRM.</p>
+          <div className="crm-login-identidad"><h1>AutoVentas GT</h1><p>Sistema de Gestión CRM</p><span>Plataforma administrativa de ventas</span></div><h2>Iniciar sesión</h2><p>Ingresa tus credenciales para acceder al CRM.</p>
           {error && <div className="crm-error" role="alert">{error}</div>}
           <label>Correo electrónico<input autoFocus type="email" name="correo" autoComplete="username" maxLength={150} value={correo} onChange={e => setCorreo(e.target.value)} placeholder="tu.correo@empresa.com" required disabled={cargando} /></label>
           <label>Contraseña<div className="crm-password"><input type={visible ? 'text' : 'password'} name="password" autoComplete="current-password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Ingresa tu contraseña" required disabled={cargando} /><button type="button" aria-label={visible ? 'Ocultar contraseña' : 'Mostrar contraseña'} aria-pressed={visible} onClick={() => setVisible(!visible)}>{visible ? 'Ocultar' : 'Mostrar'}</button></div></label>
