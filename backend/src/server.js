@@ -1,9 +1,13 @@
-
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
 const pool = require("./db");
+
+const authRoutes = require("./routes/authRoutes");
+const usuariosRoutes = require("./routes/usuariosRoutes");
+const rolesRoutes = require("./routes/rolesRoutes");
+
 const clientesRoutes = require("./routes/clientes");
 const prospectosRoutes = require("./routes/prospectos");
 const seguimientoProspectosRoutes = require("./routes/seguimientoProspectos");
@@ -41,10 +45,17 @@ app.get("/api/test-db", async (req, res) => {
   }
 });
 
-// Rutas de Clientes
+// Autenticación
+app.use("/api/auth", authRoutes);
+
+// Usuarios y roles
+app.use("/api/usuarios", usuariosRoutes);
+app.use("/api/roles", rolesRoutes);
+
+// Clientes
 app.use("/api/clientes", clientesRoutes);
 
-// Rutas de Prospectos y su seguimiento
+// Prospectos y seguimiento
 app.use("/api/prospectos", prospectosRoutes);
 app.use("/api/prospectos", seguimientoProspectosRoutes);
 

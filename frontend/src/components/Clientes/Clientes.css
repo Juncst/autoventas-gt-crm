@@ -1,8 +1,8 @@
 .clientes-contenedor {
   padding: 32px;
-  background-color: #f7f8fc;
+  background-color: var(--background);
   min-height: 100vh;
-  font-family: Arial, sans-serif;
+  font-family: var(--font-ui);
 }
 
 .clientes-encabezado {
@@ -16,7 +16,7 @@
 .clientes-encabezado h1 {
   font-size: 28px;
   font-weight: bold;
-  color: #14213d;
+  color: var(--text-primary);
   margin: 0 0 8px;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .clientes-boton {
-  background-color: #233f8c;
+  background-color: var(--primary);
   color: white;
   padding: 12px 20px;
   border: none;
@@ -38,7 +38,7 @@
 }
 
 .clientes-boton:hover {
-  background-color: #1b3270;
+  background-color: var(--primary-hover);
 }
 /* Sección de filtros */
 
@@ -48,7 +48,7 @@
   gap: 12px;
   padding: 20px;
   background-color: white;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border);
   border-radius: 12px;
   margin-bottom: 25px;
   flex-wrap: wrap;
@@ -90,7 +90,7 @@
 
 .clientes-tabla-contenedor {
   background-color: white;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border);
   border-radius: 12px;
   overflow-x: auto;
   margin-top: 25px;
@@ -109,7 +109,7 @@
 
 .clientes-tabla th {
   padding: 18px 15px;
-  color: #64748b;
+  color: var(--text-secondary);
   font-size: 12px;
   text-transform: uppercase;
   font-weight: 700;
@@ -118,7 +118,7 @@
 
 .clientes-tabla td {
   padding: 20px 15px;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border);
   color: #334155;
 }
 
@@ -128,7 +128,7 @@
 
 .cliente-nombre {
   font-weight: 600;
-  color: #14213d;
+  color: var(--text-primary);
   margin-bottom: 5px;
 }
 
@@ -173,7 +173,7 @@
 }
 
 .estado-inactivo {
-  background-color: #e5e7eb;
+  background-color: var(--border);
   color: #6b7280;
 }
 
@@ -181,15 +181,15 @@
 
 .clientes-tabla-pie {
   padding: 16px;
-  border-top: 1px solid #e5e7eb;
-  color: #64748b;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
   font-size: 13px;
 }
 
 .clientes-sin-resultados {
   padding: 30px;
   text-align: center;
-  color: #64748b;
+  color: var(--text-secondary);
 }
 
 /* Fondo oscuro del formulario */
@@ -227,13 +227,13 @@
 
 .clientes-modal-encabezado h2 {
   font-size: 22px;
-  color: #14213d;
+  color: var(--text-primary);
   margin: 0 0 6px;
 }
 
 .clientes-modal-encabezado p {
   font-size: 13px;
-  color: #64748b;
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -241,7 +241,7 @@
   background: transparent;
   border: none;
   font-size: 28px;
-  color: #64748b;
+  color: var(--text-secondary);
   cursor: pointer;
 }
 
@@ -277,14 +277,14 @@
   font-size: 14px;
   font-family: inherit;
   background: white;
-  color: #14213d;
+  color: var(--text-primary);
 }
 
 .clientes-formulario input:focus,
 .clientes-formulario select:focus,
 .clientes-formulario textarea:focus {
   outline: 2px solid #b6c4ff;
-  border-color: #233f8c;
+  border-color: var(--primary);
 }
 
 .clientes-formulario-acciones {
@@ -293,7 +293,7 @@
   justify-content: flex-end;
   gap: 12px;
   padding-top: 18px;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border);
 }
 
 .clientes-cancelar {
@@ -338,4 +338,21 @@
 
 .clientes-editar:hover {
   background-color: #c7d8ff;
+}
+
+/* Ajustes de presentación compartidos con las referencias de Stitch. */
+.clientes-contenedor { max-width: 1600px; margin: auto; min-height: calc(100dvh - 72px); color: var(--text-primary); }
+.clientes-encabezado h1 { font-weight: 700; letter-spacing: -0.7px; }
+.clientes-filtros, .clientes-tabla-contenedor { box-shadow: var(--shadow-card); border-color: var(--border); }
+.clientes-filtros input, .clientes-filtros select { min-height: 44px; border-color: var(--border); background: #fafbfe; }
+.clientes-tabla th { background: #f1f4fc; font-weight: 600; letter-spacing: 0.35px; padding: 18px 20px; }
+.clientes-tabla td { padding: 22px 20px; }
+.clientes-tabla-pie { background: #fafbfe; font-size: 12px; }
+.clientes-boton { min-height: 44px; }
+@media (max-width: 760px) {
+ .clientes-contenedor { padding: 26px 20px; }
+ .clientes-filtros { padding: 16px; gap: 12px; flex-wrap: wrap; }
+ .clientes-filtros input, .clientes-filtros select { flex-basis: 100%; width: 100%; min-width: 0; }
+ .clientes-encabezado { flex-wrap: wrap; }
+ .clientes-formulario-acciones { flex-wrap: wrap; }
 }
