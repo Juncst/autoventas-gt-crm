@@ -6,12 +6,14 @@ const modulos = [
   { id: 'dashboard', nombre: 'Dashboard' },
   { id: 'clientes', nombre: 'Clientes' },
   { id: 'prospectos', nombre: 'Prospectos' },
+  { id: 'vehiculos', nombre: 'Vehículos' },
   { id: 'usuarios', nombre: 'Usuarios', rol: 'ADMINISTRADOR' },
 ];
 
 export default function Layout({ pantalla, children }) {
   const { usuario, cerrarSesion, errorSesion } = useAuth();
   const [menuAbierto, setMenuAbierto] = useState(false);
+  
   return (
     <div className="crm-layout">
       <aside className={`crm-sidebar ${menuAbierto ? 'crm-sidebar-abierto' : ''}`}>
@@ -44,7 +46,7 @@ export default function Layout({ pantalla, children }) {
           <button className="crm-menu" aria-expanded={menuAbierto} aria-label="Abrir o cerrar menú" onClick={() => setMenuAbierto(!menuAbierto)}>☰</button>
           <span>
             <span className="crm-header-concepto">Espacio de trabajo</span> <span className="crm-header-separador">/</span>
-            <strong>{modulos.find(modulo => modulo.id === pantalla)?.nombre || 'Acceso restringido'}</strong>
+            <strong>{modulos.find(modulo => modulo.id === pantalla)?.nombre || 'Cotizaciones'}</strong>
           </span>
           <div className="crm-header-usuario">
             <span className="crm-avatar" aria-hidden="true">{usuario.nombre.slice(0, 1)}{usuario.apellido.slice(0, 1)}</span>
