@@ -11,8 +11,6 @@ const rolesRoutes = require("./routes/rolesRoutes");
 const clientesRoutes = require("./routes/clientes");
 const prospectosRoutes = require("./routes/prospectos");
 const seguimientoProspectosRoutes = require("./routes/seguimientoProspectos");
-
-// NUEVOS MODULOS
 const vehiculosRoutes = require("./routes/vehiculos");
 const cotizacionesRoutes = require("./routes/cotizaciones");
 
@@ -21,7 +19,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Comprobar que el servidor funciona
 app.get("/api/health", (req, res) => {
   res.json({
     ok: true,
@@ -29,7 +26,6 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-// Comprobar la conexión con PostgreSQL
 app.get("/api/test-db", async (req, res) => {
   try {
     const resultado = await pool.query("SELECT NOW() AS fecha");
@@ -49,23 +45,18 @@ app.get("/api/test-db", async (req, res) => {
   }
 });
 
-// Autenticación
 app.use("/api/auth", authRoutes);
 
-// Usuarios y roles
 app.use("/api/usuarios", usuariosRoutes);
 app.use("/api/roles", rolesRoutes);
 
-// Clientes
 app.use("/api/clientes", clientesRoutes);
 
-// Vehículos y cotizaciones
 app.use("/api/vehiculos", vehiculosRoutes);
 app.use("/api/cotizaciones", cotizacionesRoutes);
 
-// Prospectos y seguimiento
 app.use("/api/prospectos", prospectosRoutes);
-app.use("/api/seguimiento-prospectos", seguimientoProspectosRoutes);
+app.use("/api/prospectos", seguimientoProspectosRoutes);
 
 const PORT = process.env.PORT || 3000;
 
