@@ -1,6 +1,8 @@
 
 import { useEffect, useState } from "react";
 import "./Prospectos.css";
+import { solicitar } from "../../services/api";
+import { useAuth } from "../../context/useAuth";
 
 import {
   obtenerProspectos,
@@ -46,32 +48,13 @@ const estadosDisponibles = [
   "Perdido",
 ];
 
-const asesoresDisponibles = [
-  "Sofía Estrada",
-  "Juan Pablo Rivera",
-  "Mario Morales",
-  "Estuardo Castillo",
-];
-
-const vehiculosDisponibles = [
-  "Toyota Hilux SRV 2024",
-  "Honda CR-V Touring 2023",
-  "Isuzu D-Max V-Cross 2024",
-  "Mazda CX-5 Grand Touring",
-  "Mitsubishi L200 Sportero",
-];
-
-const imagenesVehiculos = {
-  "Toyota Hilux SRV 2024": "/vehiculos/toyota-hilux.jpg",
-};
-
 const formularioVacio = {
   nombre: "",
   descripcion: "",
   telefono: "",
   correo: "",
   vehiculo: "",
-  asesor: "Sofía Estrada",
+  asesor: "",
   estado: "Nuevo",
   observaciones: "",
 };
@@ -136,7 +119,10 @@ function Icono({ tipo, size = 18 }) {
 }
 
 function Prospectos() {
+  const { usuario } = useAuth();
   const [prospectos, setProspectos] = useState([]);
+  const [vehiculosCatalogo, setVehiculosCatalogo] = useState([]);
+  const [cotizacionesRegistradas, setCotizacionesRegistradas] = useState([]);
   const [guardando, setGuardando] = useState(false);
 
   useEffect(() => {
@@ -148,6 +134,16 @@ function Prospectos() {
 
         if (activo) {
           setProspectos(registros.map(adaptarProspecto));
+        }
+
+        const [vehiculos, cotizaciones] = await Promise.all([
+          solicitar("/vehiculos").catch(() => []),
+          solicitar("/cotizaciones").catch(() => []),
+        ]);
+
+        if (activo) {
+          setVehiculosCatalogo(vehiculos);
+          setCotizacionesRegistradas(cotizaciones);
         }
       } catch (error) {
         console.error("Error al cargar prospectos:", error);
@@ -218,6 +214,35 @@ function Prospectos() {
     }
   }
 
+  const nombreUsuario = usuario
+    ? `${usuario.nombre} ${usuario.apellido}`.trim()
+    : "";
+
+  const asesoresDisponibles = Array.from(
+    new Set(
+      [...prospectos.map((item) => item.asesor), nombreUsuario]
+        .filter(Boolean)
+    )
+  ).sort();
+
+  const vehiculosDisponibles = Array.from(
+    new Set([
+      ...vehiculosCatalogo.map(
+        (auto) => `${auto.marca} ${auto.modelo} ${auto.anio}`
+      ),
+      ...prospectos.map((item) => item.vehiculo).filter(Boolean),
+    ])
+  ).sort();
+
+  const imagenesVehiculos = Object.fromEntries(
+    vehiculosCatalogo
+      .filter((auto) => auto.imagen_url)
+      .map((auto) => [
+        `${auto.marca} ${auto.modelo} ${auto.anio}`,
+        auto.imagen_url,
+      ])
+  );
+
   const [busqueda, setBusqueda] = useState("");
   const [asesor, setAsesor] = useState("");
   const [estado, setEstado] = useState("");
@@ -257,9 +282,6 @@ function Prospectos() {
       total + Number(prospecto.precio || 0),
     0
   );
-
-  // Pendiente de integración con cotizaciones
-  const cotizacionesRegistradas = [];
 
   const ahora = new Date();
 
@@ -336,7 +358,10 @@ function Prospectos() {
 
   function abrirNuevoProspecto() {
     setProspectoEditando(null);
-    setNuevoProspecto({ ...formularioVacio });
+    setNuevoProspecto({
+      ...formularioVacio,
+      asesor: nombreUsuario || asesoresDisponibles[0] || "",
+    });
     setMostrarFormulario(true);
   }
 
@@ -353,6 +378,22 @@ function Prospectos() {
 
   function cambiarDato(e) {
     const { name, value } = e.target;
+
+    if (name === "vehiculo") {
+      const auto = vehiculosCatalogo.find(
+        (item) => `${item.marca} ${item.modelo} ${item.anio}` === value
+      );
+
+      setNuevoProspecto((anterior) => ({
+        ...anterior,
+        vehiculo: value,
+        detalleVehiculo: auto
+          ? `${auto.tipo} · ${auto.transmision} · ${auto.combustible}`
+          : anterior.detalleVehiculo,
+        precio: auto ? Number(auto.precio || 0) : anterior.precio,
+      }));
+      return;
+    }
 
     setNuevoProspecto((anterior) => ({
       ...anterior,
@@ -556,11 +597,8 @@ function Prospectos() {
     }
   }
 
-  // Pendiente de integración con el módulo de cotizaciones
   function crearCotizacion() {
-    alert(
-      "La creación de cotizaciones se conectará con el módulo correspondiente del equipo."
-    );
+    window.location.hash = "#/vehiculos";
   }
 
   function formatoQuetzales(cantidad) {
@@ -613,7 +651,7 @@ function Prospectos() {
           <div className="prospectos-indicador-datos">
             <strong>{cotizacionesRegistradas.length}</strong>
             <small className="prospectos-indicador-morado">
-              Sin integración
+              Registradas en sistema
             </small>
           </div>
         </div>
@@ -1004,8 +1042,8 @@ function Prospectos() {
 
               <div className="prospectos-ficha-tarjeta">
                 <p>
-                  Las cotizaciones se mostrarán aquí cuando
-                  estén conectadas con el módulo correspondiente.
+                  Hay {cotizacionesRegistradas.length} cotizaciones registradas
+                  en el sistema. Puedes consultarlas desde el módulo Cotizaciones.
                 </p>
               </div>
             </div>
