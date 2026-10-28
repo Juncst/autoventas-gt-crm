@@ -1,7 +1,8 @@
-
 import { useSyncExternalStore } from "react";
 import Clientes from "./components/Clientes/Clientes";
 import Prospectos from "./components/Prospectos/Prospectos";
+import Vehiculos from "./components/Vehiculos/Vehiculos"; 
+import Cotizaciones from "./components/Cotizaciones/Cotizaciones"; // <-- IMPORTACIÓN
 import AuthProvider from "./context/AuthProvider";
 import { useAuth } from "./context/useAuth";
 import Login from "./components/Login/Login";
@@ -18,6 +19,7 @@ function suscribir(callback) {
 function Aplicacion() {
   const { usuario, comprobando, errorSesion, actualizarSesion, cerrarSesion } = useAuth();
   const ruta = useSyncExternalStore(suscribir, () => window.location.hash.slice(2));
+  
   if (comprobando) {
     return (
       <div className="crm-espera">
@@ -32,11 +34,19 @@ function Aplicacion() {
       </div>
     );
   }
+  
   if (!usuario) return <Login />;
-  const pantalla = ['clientes', 'prospectos', 'usuarios'].includes(ruta) ? ruta : 'dashboard';
+  
+  // AÑADIDO 'cotizaciones'
+  const pantalla = ['clientes', 'prospectos', 'usuarios', 'vehiculos', 'cotizaciones'].includes(ruta) ? ruta : 'dashboard';
+  
   let contenido = <Dashboard />;
+  
   if (pantalla === 'clientes') contenido = <Clientes />;
   if (pantalla === 'prospectos') contenido = <Prospectos />;
+  if (pantalla === 'vehiculos') contenido = <Vehiculos />; 
+  if (pantalla === 'cotizaciones') contenido = <Cotizaciones />; // <-- RUTA AÑADIDA
+  
   if (pantalla === 'usuarios') {
     contenido = usuario.rol === 'ADMINISTRADOR' ? <Usuarios /> : (
       <section className="crm-pagina">
@@ -46,6 +56,7 @@ function Aplicacion() {
       </section>
     );
   }
+  
   return <Layout pantalla={pantalla}>{contenido}</Layout>;
 }
 

@@ -1,94 +1,47 @@
+import { solicitar } from "./api";
 
-const API_URL = "http://localhost:3000/api/prospectos";
-
-// Revisamos si el servidor respondió correctamente
-async function procesarRespuesta(respuesta) {
-  const datos = await respuesta.json();
-
-  if (!respuesta.ok) {
-    throw new Error(
-      datos.mensaje || "Ocurrió un error al comunicarse con el servidor"
-    );
-  }
-
-  return datos;
+export function obtenerProspectos() {
+  return solicitar("/prospectos");
 }
 
-// Consultar todos los prospectos
-export async function obtenerProspectos() {
-  const respuesta = await fetch(API_URL);
-  return procesarRespuesta(respuesta);
-}
-
-// Registrar un prospecto
-export async function crearProspecto(datos) {
-  const respuesta = await fetch(API_URL, {
+export function crearProspecto(datos) {
+  return solicitar("/prospectos", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(datos),
+    body: datos,
   });
-
-  return procesarRespuesta(respuesta);
 }
 
-// Editar un prospecto
-export async function actualizarProspecto(id, datos) {
-  const respuesta = await fetch(`${API_URL}/${id}`, {
+export function actualizarProspecto(id, datos) {
+  return solicitar(`/prospectos/${id}`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(datos),
+    body: datos,
   });
-
-  return procesarRespuesta(respuesta);
 }
 
-// Eliminar un prospecto
-export async function eliminarProspectoApi(id) {
-  const respuesta = await fetch(`${API_URL}/${id}`, {
+export function eliminarProspectoApi(id) {
+  return solicitar(`/prospectos/${id}`, {
     method: "DELETE",
   });
-
-  return procesarRespuesta(respuesta);
 }
 
-// Consultar las notas de un prospecto
-export async function obtenerNotas(id) {
-  const respuesta = await fetch(`${API_URL}/${id}/notas`);
-  return procesarRespuesta(respuesta);
+export function obtenerNotas(id) {
+  return solicitar(`/prospectos/${id}/notas`);
 }
 
-// Guardar una nota
-export async function crearNota(id, contenido) {
-  const respuesta = await fetch(`${API_URL}/${id}/notas`, {
+export function crearNota(id, contenido) {
+  return solicitar(`/prospectos/${id}/notas`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ contenido }),
+    body: { contenido },
   });
-
-  return procesarRespuesta(respuesta);
 }
 
-// Consultar el historial de actividades
-export async function obtenerActividades(id) {
-  const respuesta = await fetch(`${API_URL}/${id}/actividades`);
-  return procesarRespuesta(respuesta);
+export function obtenerActividades(id) {
+  return solicitar(`/prospectos/${id}/actividades`);
 }
 
-// Registrar una actividad de seguimiento
-export async function crearActividad(id, datos) {
-  const respuesta = await fetch(`${API_URL}/${id}/actividades`, {
+export function crearActividad(id, datos) {
+  return solicitar(`/prospectos/${id}/actividades`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(datos),
+    body: datos,
   });
-
-  return procesarRespuesta(respuesta);
 }
