@@ -115,4 +115,79 @@ CREATE INDEX IF NOT EXISTS idx_cotizacion_items_cotizacion
     ON public.cotizacion_items(cotizacion_id);
 
 
+
+-- =========================================================
+-- 5. DATOS INICIALES DE VEHICULOS
+-- =========================================================
+-- Datos de demostracion para el MVP.
+-- Se puede ejecutar varias veces sin duplicar registros.
+
+INSERT INTO public.vehiculos
+(codigo, marca, modelo, anio, tipo, motor, combustible, transmision,
+ color, vin, condicion, kilometraje, precio, estado, imagen_url)
+VALUES
+('VEH-001', 'Toyota', 'Hilux SRV', 2024, 'Pickup', '2.8L Turbo Diesel',
+ 'Diesel', 'Automatica', 'Gris', 'MR0BA3CD100000001', 'Seminuevo', 32937,
+ 384990.00, 'Disponible',
+ 'https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&q=70&w=640'),
+
+('VEH-002', 'Honda', 'CR-V Touring', 2023, 'SUV', '1.5L Turbo',
+ 'Gasolina', 'Automatica', 'Azul', '2HKRS6000PH000002', 'Seminuevo', 18500,
+ 278000.00, 'Disponible',
+ 'https://acnews.blob.core.windows.net/imgnews/paragraph/NPAZ_657234d66322489ab0db87271cfa2c8c.webp'),
+
+('VEH-003', 'Isuzu', 'D-Max V-Cross', 2024, 'Pickup', '3.0L Turbo Diesel',
+ 'Diesel', 'Automatica', 'Rojo', 'MPATFS40JPT000003', 'Nuevo', 0,
+ 329000.00, 'Disponible',
+ 'https://static.motor.es/fotos-noticias/2023/10/isuzu-d-max-2024-202397957-1697480785_2.jpg'),
+
+('VEH-004', 'Mazda', 'CX-5 Grand Touring', 2024, 'SUV', '2.5L',
+ 'Gasolina', 'Automatica', 'Gris', 'JM3KFBCM6R0000004', 'Nuevo', 0,
+ 289000.00, 'Disponible',
+ 'https://dealerimages.dealereprocess.com/image/upload/v1692292374/1/mazda/2024_CX5/2024_CX5_2_5_Turbo_Signature_MachineGray_Car_0000.png'),
+
+('VEH-005', 'Mitsubishi', 'L200 Sportero', 2024, 'Pickup', '2.4L Turbo Diesel',
+ 'Diesel', 'Automatica', 'Plata', 'MMBJLKL10RH000005', 'Nuevo', 0,
+ 305000.00, 'Reservado',
+ 'https://images.unsplash.com/photo-1551830820-330a71b99659?auto=format&fit=crop&q=70&w=640'),
+
+('VEH-006', 'Hyundai', 'Tucson', 2025, 'SUV', '2.0L',
+ 'Gasolina', 'Automatica', 'Gris', 'KM8J3CA40SU000006', 'Nuevo', 0,
+ 245000.00, 'Disponible',
+ 'https://s1.cdn.autoevolution.com/images/news/gallery/refreshed-2025-hyundai-tucson-prices-revealed-here-s-how-much-it-costs-in-the-us_38.jpg'),
+
+('VEH-007', 'Toyota', 'Corolla', 2025, 'Sedan', '2.0L',
+ 'Gasolina', 'Automatica', 'Azul', '5YFB4MDE0SP000007', 'Nuevo', 0,
+ 185000.00, 'Disponible',
+ 'https://carimages.d2cmedia.ca/newcarimages/en/cb69a3ca2b13e80/Toyota/Corolla/2025/2100/463469/Red/front45.png'),
+
+('VEH-008', 'Honda', 'Civic', 2025, 'Sedan', '2.0L',
+ 'Gasolina', 'Automatica', 'Blanco', '2HGFE2F50SH000008', 'Nuevo', 0,
+ 235000.00, 'Disponible',
+ 'https://crdms.images.consumerreports.org/c_lfill%2Cw_768%2Cq_auto%2Cf_auto/prod/cars/chrome/white/2025HOC021991696_1280_01'),
+
+('VEH-009', 'Kia', 'Sportage', 2025, 'SUV', '2.5L',
+ 'Gasolina', 'Automatica', 'Blanco', 'KNDPUCDF7S7000009', 'Nuevo', 0,
+ 225000.00, 'Disponible',
+ 'https://1s-photomanager-prd.autotradercdn.ca/photos/import/202509/0413/0300/16a1ca65-5208-4d98-b33b-1ea4a837efcc.jpg-2048x1536'),
+
+('VEH-010', 'Ford', 'Ranger', 2025, 'Pickup', '2.3L Turbo',
+ 'Gasolina', 'Automatica', 'Gris', '1FTER4FH0SLA00010', 'Nuevo', 0,
+ 325000.00, 'Disponible',
+ 'https://fordtadvantage-com.cdn-convertus.com/uploads/sites/85/2024/03/B_Ranger2025_Galerie_Img1_960x600.jpg')
+ON CONFLICT (codigo) DO UPDATE SET
+    marca = EXCLUDED.marca,
+    modelo = EXCLUDED.modelo,
+    anio = EXCLUDED.anio,
+    tipo = EXCLUDED.tipo,
+    motor = EXCLUDED.motor,
+    combustible = EXCLUDED.combustible,
+    transmision = EXCLUDED.transmision,
+    color = EXCLUDED.color,
+    condicion = EXCLUDED.condicion,
+    kilometraje = EXCLUDED.kilometraje,
+    precio = EXCLUDED.precio,
+    estado = EXCLUDED.estado,
+    imagen_url = EXCLUDED.imagen_url;
+
 -- FIN DEL SCRIPT
