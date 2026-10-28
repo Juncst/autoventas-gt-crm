@@ -159,7 +159,7 @@ VALUES
 ('VEH-007', 'Toyota', 'Corolla', 2025, 'Sedan', '2.0L',
  'Gasolina', 'Automatica', 'Azul', '5YFB4MDE0SP000007', 'Nuevo', 0,
  185000.00, 'Disponible',
- 'https://carimages.d2cmedia.ca/newcarimages/en/cb69a3ca2b13e80/Toyota/Corolla/2025/2100/463469/Red/front45.png'),
+ 'https://delivery.vcr.assetscs.toyota.com/adobe/assets/urn%3Aaaid%3Aaem%3Ae395142c-a006-45a6-a774-ac7cf347de7c/as/image.png'),
 
 ('VEH-008', 'Honda', 'Civic', 2025, 'Sedan', '2.0L',
  'Gasolina', 'Automatica', 'Blanco', '2HGFE2F50SH000008', 'Nuevo', 0,
