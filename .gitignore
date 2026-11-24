@@ -16,3 +16,7 @@ Thumbs.db
 # Archivos temporales
 *.tmp
 *.temp
+
+# Reportes locales de calidad
+coverage/
+.scannerwork/

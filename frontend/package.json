@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "node --test test/*.test.mjs",
+    "test:coverage": "c8 --all --include=src/**/*.js --include=src/**/*.jsx --extension=.js --extension=.jsx --reporter=text --reporter=lcov --reporter=json-summary node --test test/*.test.mjs",
     "test:browser": "node test/navegador.mjs",
     "dev": "vite",
     "build": "vite build",
@@ -22,6 +23,7 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
+    "c8": "12.0.0",
     "eslint": "^10.10.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.6",
